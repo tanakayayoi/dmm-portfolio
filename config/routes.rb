@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :posts, except: [:index]
   get 'tag_search' => 'posts#tag_search'
+  resources :users, only: [:show, :edit, :update, :destroy]
+  post 'confirm' => 'users#confirm'
+
 end
