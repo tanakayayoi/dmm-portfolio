@@ -1,0 +1,18 @@
+<div>
+  <%= attachment_image_tag @post, :image, size: "300x300", format: 'jpeg', fallback: "no_image.jpg" %>
+  <p>
+    <%= link_to user_path(@post.user) do %>
+      <%= attachment_image_tag @post.user, :profile_image, size: "50X50", format: 'jpeg', fallback: "no_image.jpg" %>
+      <%= @post.user.name %>
+    <% end %>
+  </p>
+  <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+  ♡
+  <p>タイトル：<%= @post.title %></p>
+  <p>本文：<%= @post.body %></p>
+  <p>タグ：<%= @post.tag %></p>
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post), method: :delete %>
+    <%= link_to "編集", edit_post_path(@post) %>
+  <% end %>
+</div>

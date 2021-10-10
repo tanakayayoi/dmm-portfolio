@@ -1,7 +1,11 @@
 <h2>マイページ</h2>
 
 <h3>登録情報</h3>
-<%= link_to '編集する', edit_user_path %>
+<% if @user.id == current_user.id %>
+  <%= link_to '編集する', edit_user_path %>
+<% end %><br>
+
+<%= attachment_image_tag @user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %>
 
 <table>
   <tr>
@@ -9,11 +13,21 @@
     <td><%= @user.name %></td>
   </tr>
   <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
     <th>自己紹介</th>
     <td><%= @user.introduction %></td>
   </tr>
 </table>
+
+<h2>投稿一覧</h2>
+<% @posts.each do |post| %>
+<div>
+  <%= link_to post_path(post) do %>
+    <%= attachment_image_tag post, :image, size: "300x300", format: 'jpeg', fallback: "no_image.jpg" %>
+  <% end %>
+  <p><%= attachment_image_tag post.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %></p>
+  <p>タイトル：<%= post.title %></p>
+  <p>本文：<%= post.body %></p>
+  <p>タグ：<%= post.tag %></p>
+  <p>ユーザーネーム：<%= post.user.name %></p>
+</div>
+<% end %>

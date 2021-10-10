@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :posts, except: [:index]
   get 'tag_search' => 'posts#tag_search'
   resources :users, only: [:show, :edit, :update, :destroy]
-  post 'confirm' => 'users#confirm'
+  get 'confirm' => 'users#confirm'
 
 end
