@@ -7,7 +7,15 @@
     <% end %>
   </p>
   <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-  ♡
+  <% if @post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to @post.favorites.count, post_favorites_path(@post), method: :delete, class: "fas fa-heart heart_red", local:true %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to @post.favorites.count, post_favorites_path(@post), method: :post, class: "far fa-heart heart_blue", local:true %>
+    </p>
+  <% end %>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
   <p>タグ：<%= @post.tag %></p>
