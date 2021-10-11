@@ -8,6 +8,18 @@ class PostCommentsController < ApplicationController
     redirect_to post_path(@post)
   end
 
+  def edit
+    @post = Post.find(params[:post_id])
+    @post_comment = PostComment.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:post_id])
+    @post_comment = PostComment.find(params[:id])
+    @post_comment.update(post_comment_params)
+    redirect_to post_path(params[:post_id])
+  end
+
   def destroy
     PostComment.find_by(id: params[:id]).destroy
     redirect_to post_path(params[:post_id])

@@ -26,6 +26,7 @@
   <% if post_comment.user == current_user %>
   <div>
     <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <%= link_to "編集", edit_post_post_comment_path(post_comment.post, post_comment) %>
   </div>
   <% end %>
 <% end %>
