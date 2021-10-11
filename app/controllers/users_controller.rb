@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def confirm
     @user = current_user
   end
-  
+
   #退会処理（物理削除
   def destroy
     @user = current_user
