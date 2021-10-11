@@ -30,5 +30,7 @@
   <p>タグ：<%= post.tag %></p>
   <p>ユーザーネーム：<%= post.user.name %></p>
   <p><%= link_to "#{post.post_comments.count} コメント", post_path(post) %></p>
+  <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
 </div>
 <% end %>
+<%= paginate @posts %>

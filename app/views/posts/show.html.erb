@@ -7,15 +7,7 @@
     <% end %>
   </p>
   <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-  <% if @post.favorited_by?(current_user) %>
-    <p>
-      <%= link_to @post.favorites.count, post_favorites_path(@post), method: :delete, class: "fas fa-heart heart_red", local:true %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to @post.favorites.count, post_favorites_path(@post), method: :post, class: "far fa-heart heart_blue", local:true %>
-    </p>
-  <% end %>
+  <p class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></p>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
   <p>タグ：<%= @post.tag %></p>
@@ -25,22 +17,12 @@
   <% end %>
 </div>
 
-<div>
-<p>コメント件数：<%= @post.post_comments.count %></p>
-<% @post.post_comments.each do |post_comment| %>
-  <p><%= attachment_image_tag post_comment.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %></p>
-  <%= post_comment.user.name %>
-  <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %><%= post_comment.comment %>
-  <% if post_comment.user == current_user %>
-  <div>
-    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    <%= link_to "編集", edit_post_post_comment_path(post_comment.post, post_comment) %>
-  </div>
-  <% end %>
-<% end %>
+<div class="post_comments">
+<p id="comments-count">コメント件数：<%= @post.post_comments.count %></p>
+<%= render 'post_comments/index', post: @post %>
 </div>
 <div>
-<%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+<%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信する" %>
 <% end %>
