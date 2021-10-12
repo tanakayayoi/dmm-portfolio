@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   get 'tag_search' => 'posts#tag_search'
   resources :users, only: [:show, :edit, :update, :destroy]
   get 'confirm' => 'users#confirm'
+  resources :contacts, only: [:new, :create]
+  post 'confirm' => 'contacts#confirm'
+  post 'back' => 'contacts#back'
+  get 'done' => 'contacts#done'
 
 end
