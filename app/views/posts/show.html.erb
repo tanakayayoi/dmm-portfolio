@@ -10,7 +10,11 @@
   <p class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></p>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
-  <p>タグ：<%= @post.tag %></p>
+  <p>タグ：
+    <% @post_tags.each do |tag| %>
+      <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %> (<%= tag.posts.count %>)
+    <% end %>
+  </p>
   <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>
     <%= link_to "編集", edit_post_path(@post) %>
