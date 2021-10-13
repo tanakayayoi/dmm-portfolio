@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   attachment :image
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
 
@@ -24,8 +25,8 @@ class Post < ApplicationRecord
     end
     #新規のタグを保存
     new_tags.each do |new|
-      new_post_tag = Tag.find_or_create_by(tag_name: new)
-      self.tags << new_post_tag
+      new_tag = Tag.find_or_create_by(tag_name: new)
+      self.tags << new_tag
     end
   end
 

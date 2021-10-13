@@ -12,6 +12,9 @@
 
   <body>
     <header>
+      <li>
+        <%= link_to "ホーム", root_path %>
+      </li>
       <% if user_signed_in? %>
         <%= form_with url:search_path, method: :get, local: true do |f| %>
           <%= f.text_field 'search[value]' %>

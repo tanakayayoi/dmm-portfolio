@@ -19,18 +19,5 @@
 </table>
 
 <h2>投稿一覧</h2>
-<% @posts.each do |post| %>
-<div>
-  <%= link_to post_path(post) do %>
-    <%= attachment_image_tag post, :image, size: "300x300", format: 'jpeg', fallback: "no_image.jpg" %>
-  <% end %>
-  <p><%= attachment_image_tag post.user, :profile_image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %></p>
-  <p>タイトル：<%= post.title %></p>
-  <p>本文：<%= post.body %></p>
-  <p>タグ：<%= post.tag %></p>
-  <p>ユーザーネーム：<%= post.user.name %></p>
-  <p><%= link_to "#{post.post_comments.count} コメント", post_path(post) %></p>
-  <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
-</div>
-<% end %>
+<%= render 'posts/index', posts: @posts %>
 <%= paginate @posts %>
