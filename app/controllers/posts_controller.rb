@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
-      redirect_to :root
+      render :new
     end
   end
 

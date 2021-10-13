@@ -7,7 +7,15 @@
     <% end %>
   </p>
   <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
-  <p class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></p>
+  <% if user_signed_in? %><!-- ユーザーがログインしている且つ自分の投稿じゃない時のみいいねボタンを表示 -->
+    <% if @post.user == current_user %><!-- 自分の投稿にはいいね数のみ表示（いいねできない） -->
+      <p class="fas fa-heart heart_red"><%= @post.favorites.count %></p>
+    <% else %>
+      <p class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></p>
+    <% end %>
+  <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
+    <p class="fas fa-heart heart_red"><%= @post.favorites.count %></p>
+  <% end %>
   <p>タイトル：<%= @post.title %></p>
   <p>本文：<%= @post.body %></p>
   <p>タグ：
@@ -23,11 +31,14 @@
 
 <div class="post_comments">
 <p id="comments-count">コメント件数：<%= @post.post_comments.count %></p>
-<%= render 'post_comments/index', post: @post %>
-</div>
-<div>
-<%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
+<!-- ユーザーがログインしている時だけコメントフォームを表示 -->
+<% if user_signed_in? %>
+  <%= render 'post_comments/index', post: @post %>
+  </div>
+  <div>
+  <%= form_with(model:[@post, @post_comment], remote: true) do |f| %>
+    <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
 <% end %>
 </div>

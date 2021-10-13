@@ -15,6 +15,10 @@
   </p>
   <p>ユーザーネーム：<%= link_to post.user.name, user_path(post.user) %></p>
   <p><%= link_to "#{post.post_comments.count} コメント", post_path(post) %></p>
-  <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
+  <% if user_signed_in? %><!-- ユーザーがログインしている時だけいいねボタンを表示 -->
+    <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
+  <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
+    <p class="fas fa-heart heart_red"><%= post.favorites.count %></p>
+  <% end %>
 </div>
 <% end %>
