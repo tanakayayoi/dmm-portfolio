@@ -1,33 +1,40 @@
-<% if user_signed_in? %>
-  <% if @user.id == current_user.id %>
-    <h2>マイページ</h2>
+<div class="container">
+  <br>
+  <% if user_signed_in? %>
+    <% if @user.id == current_user.id %>
+      <h2>マイページ</h2>
+    <% else %>
+      <h2>ユーザー詳細</h2>
+    <% end %>
   <% else %>
     <h2>ユーザー詳細</h2>
   <% end %>
-<% else %>
-  <h2>ユーザー詳細</h2>
-<% end %>
-
-<h3>登録情報</h3>
-<% if user_signed_in? %>
-  <% if @user.id == current_user.id %>
-    <%= link_to '編集する', edit_user_path %>
-  <% end %><br>
-<% end %>
-
-<%= attachment_image_tag @user, :profile_image, size: "100x100", format: 'jpeg', fallback: "no_image.jpg" %>
-
-<table>
-  <tr>
-    <th>ニックネーム</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>自己紹介</th>
-    <td><%= @user.introduction %></td>
-  </tr>
-</table>
-
-<h2>投稿一覧</h2>
-<%= render 'posts/index', posts: @posts %>
-<%= paginate @posts %>
+  <div class="row my-5">
+    <div class="col-3">
+      <h3 class="text-center">プロフィール</h3>
+      <% if user_signed_in? %>
+        <% if @user.id == current_user.id %>
+          <i class="fas fa-user-edit"></i><%= link_to '編集する', edit_user_path, class: "text-dark" %>
+        <% end %><br>
+      <% end %>
+      <div class="profile-img my-2">
+        <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg", class: "rounded-circle" %>
+      </div>
+      <table class="table">
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>自己紹介</th>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-9">
+      <h3 class="text-center">投稿一覧</h3>
+      <%= render 'posts/index', posts: @posts %>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>
