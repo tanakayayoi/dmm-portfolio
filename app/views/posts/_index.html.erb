@@ -28,10 +28,14 @@
             <span><i class="fas fa-user"></i><%= link_to post.user.name, user_path(post.user), class: "text-dark" %> | </span>
             <span><i class="far fa-comment"></i><%= link_to "#{post.post_comments.count} コメント", post_path(post), class: "text-dark" %></span>
             <span>
-              <% if user_signed_in? %><!-- ユーザーがログインしている時だけいいねボタンを表示 -->
-                <div class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></div>
+              <% if user_signed_in? %><!-- ユーザーがログインしている且つ自分の投稿じゃない時のみいいねボタンを表示 -->
+                <% if post.user == current_user %><!-- 自分の投稿にはいいね数のみ表示（いいねできない） -->
+                  <p class="fas fa-heart heart_red"><%= post.favorites.count %></p>
+                <% else %>
+                  <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
+                <% end %>
               <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
-                <div class="fas fa-heart heart_red"><%= post.favorites.count %></div>
+                <p class="fas fa-heart heart_red"><%= post.favorites.count %></p>
               <% end %>
             </span>
           </div>
