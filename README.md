@@ -39,4 +39,4 @@ https://docs.google.com/spreadsheets/d/1qztApTBg1djlLcVLBsN7oljenMq1ovYLhfqrQn81
 
 ## 使用素材
 - ロゴデザイン：https://www.canva.com/
--
+- トップ画像：https://www.pakutaso.com/

@@ -1,15 +1,33 @@
-<h3>週間人気ランキング</h3>
-<%= render 'posts/index', posts: @posts, post_tags: @post_tags %>
+<div class="row mb-5">
+  <div class="main-visual">
+    <div class="main-visual-content text-center my-auto">
+      <h3>ようこそ！ここはマイル修行の疲れを癒す休憩所です</h3>
+      <p>日本全国の空港や空港周辺のおすすめスポットを紹介しています。</p>
+      <p>ここに載っていないあなたのおすすめのスポットも共有してみませんか？</p>
+      <p><em>みんなで楽しくマイル修行しましょう！</em></p>
+      <p><small>ユーザー登録なしで投稿を閲覧できますが、新規投稿やコメント、いいねをするには登録が必要です。</small></p>
+    </div>
+  </div>
+</div>
 
-<h3>タグリスト</h3>
-<% @tag_list.each do |list| %>
-<span>
-  <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %> (<%= list.posts.count %>)
-</span>
-<% end %>
+<div class="row">
+  <div class="col-md-9">
+    <h3 class="text-center mt-3">人気の投稿</h3>
+    <%= render 'posts/index', posts: @posts, post_tags: @post_tags %>
+  </div>
+
+  <div class="col-md-3">
+    <h3 class="text-center mt-3">タグリスト</h3>
+    <% @tag_list.each do |list| %>
+      <li>
+        <%= link_to list.tag_name, tag_posts_path(tag_id: list.id) %> (<%= list.posts.count %>)
+      </li>
+    <% end %>
+  </div>
+</div>
 
 <% if user_signed_in? %>
-  <li>
-    <%= link_to '投稿フォーム', new_post_path %>
-  </li>
+  <div class="new-post-btn btn btn-info">
+    <i class="fas fa-pen-nib"></i><%= link_to '新規投稿', new_post_path, class: "text-light" %>
+  </div>
 <% end %>
