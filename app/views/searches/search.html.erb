@@ -1,7 +1,8 @@
 <div class="container">
   <div class="col-xs-12">
     <% if @model == "user" %>
-    <h2>'<%= @value %>' のユーザー検索結果</h2>
+    <br>
+    <h3>'<%= @value %>' のユーザー検索結果</h3>
     <table class="table">
       <thead>
         <tr>
@@ -28,7 +29,8 @@
       </tbody>
       <% end %>
     <% elsif @model == "post" %>
-    <h2>'<%= @value %>' の投稿検索結果</h2>
+    <br>
+    <h3>'<%= @value %>' の投稿検索結果</h3>
     <table class="table">
       <thead>
         <tr>
