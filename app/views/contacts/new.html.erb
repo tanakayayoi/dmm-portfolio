@@ -1,30 +1,40 @@
-<%= form_with model: @contact, url: confirm_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name, '氏名*' %>
-    <%= f.text_field :name, autofocus: true, class: 'form-control' %>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto">
+      <br>
+      <h3>お問い合わせフォーム</h3>
+      <p><small>*は必須項目です。</small></p>
+      <%= form_with model: @contact, url: confirm_path, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :name, '氏名*' %>
+          <%= f.text_field :name, autofocus: true, class: 'form-control', width: "50px" %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :email, 'メールアドレス*' %>
-    <%= f.text_field :email, autofocus: true, class: 'form-control' %>
-  </div>
+        <div class="form-group">
+          <%= f.label :email, 'メールアドレス*' %>
+          <%= f.text_field :email, autofocus: true, class: 'form-control' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :phone, '電話番号*' %>
-    <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
-  </div>
+        <div class="form-group">
+          <%= f.label :phone, '電話番号*' %>
+          <%= f.text_field :phone, autofocus: true, class: 'form-control' %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :subject, '件名*' %>
-    <%= f.select :subject, Contact.subjects.keys.to_a %>
-  </div>
+        <div class="form-group">
+          <%= f.label :subject, '件名*' %>
+          <%= f.select :subject, Contact.subjects.keys.to_a %>
+        </div>
 
-  <div class="form-group">
-    <%= f.label :message, 'メッセージ*' %>
-    <%= f.text_area :message, size: '100x10', class: 'form-control' %>
-  </div>
+        <div class="form-group">
+          <%= f.label :message, 'メッセージ*' %>
+          <%= f.text_area :message, size: '100x10', class: 'form-control' %>
+        </div>
 
-  <div>
-    <%= f.submit '入力内容確認' %>
+        <div>
+          <%= f.submit '入力内容確認' %>
+        </div>
+        <br>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
