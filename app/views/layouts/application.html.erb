@@ -39,14 +39,12 @@
             </ul>
           </div>
           <% if user_signed_in? %>
-          <form class="form-inline my-2 my-lg-0 flex-nowrap">
-            <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0 flex-nowrap" do |f| %>
               <%= f.text_field 'search[value]', class: "form-control mr-sm-2" %>
               <%= f.select 'search[model]', options_for_select({"ユーザー" => "user", "投稿" => "post"}), class: "form-select" %>
               <%= f.select 'search[how]', options_for_select({"完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical"}), class: "form-select" %>
               <%= f.submit '検索', class: "btn btn-outline-info my-2 my-sm-0" %>
             <% end %>
-          </form>
           <% end %>
         </div>
       </nav>
