@@ -14,17 +14,17 @@
       <% @datas.each do |user| %>
       <tbody>
         <tr>
-          <th>
+          <td>
             <%= link_to user_path(user) do %>
-              <%= attachment_image_tag(user, :profile_image, size: "40x40", fallback: "no_image.jpg") %>
+              <%= attachment_image_tag user, :profile_image, size: "40x40", fallback: "no_image.jpg", class: "rounded-circle" %>
             <% end %>
-          </th>
-          <th>
-            <%= link_to user.name, user_path(user) %>
-          </th>
-          <th>
+          </td>
+          <td>
+            <%= link_to user.name, user_path(user), class: "text-dark" %>
+          </td>
+          <td>
             <%= user.introduction %>
-          </th>
+          </td>
         </tr>
       </tbody>
       <% end %>
@@ -42,17 +42,17 @@
       <% @datas.each do |post| %>
       <tbody>
         <tr>
-          <th>
+          <td>
             <%= link_to user_path(post.user) do %>
-              <%= attachment_image_tag(post.user, :profile_image, size: "40x40", fallback: "no_image.jpg") %>
+              <%= attachment_image_tag post.user, :profile_image, size: "40x40", fallback: "no_image.jpg", class: "rounded-circle" %>
             <% end %>
-          </th>
-            <th>
-              <%= link_to post.title, post_path(post) %>
-            </th>
-            <th>
-              <%= post.body %>
-            </th>
+          </td>
+          <td>
+            <%= link_to post.title, post_path(post), class: "text-dark" %>
+          </td>
+          <td>
+            <%= post.body %>
+          </td>
         </tr>
       </tbody>
       <% end %>
