@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).reverse_order
@@ -19,7 +18,7 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  #退会処理（物理削除
+  # 退会処理（物理削除
   def destroy
     @user = current_user
     @user.destroy
@@ -32,5 +31,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
-
 end

@@ -1,5 +1,4 @@
 class ContactsController < ApplicationController
-
   def new
     @contact = Contact.new
   end
@@ -7,9 +6,7 @@ class ContactsController < ApplicationController
   # 確認画面
   def confirm
     @contact = Contact.new(contact_params)
-    if @contact.invalid?
-      render :new
-    end
+    render :new if @contact.invalid?
   end
 
   # 入力内容を保持したまま前のページに戻る
@@ -29,13 +26,11 @@ class ContactsController < ApplicationController
   end
 
   # 送信完了画面
-  def done
-  end
+  def done; end
 
   private
 
   def contact_params
     params.require(:contact).permit(:email, :name, :phone, :subject, :message)
   end
-
 end

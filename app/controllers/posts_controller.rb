@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def new
     @post = Post.new
   end
@@ -40,7 +39,7 @@ class PostsController < ApplicationController
     redirect_to :root
   end
 
-  #タグ検索用
+  # タグ検索用
   def search
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
@@ -52,5 +51,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:image, :title, :body, :tag)
   end
-
 end
