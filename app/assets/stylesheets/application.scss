@@ -47,12 +47,11 @@
 .media-img-top {
  width: 450px;
  height: 300px;
-}
-
-.media-img-top img {
- width: 100%;
- height: 100%;
- object-fit: cover;
+ img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
 }
 
 .log-in {
@@ -71,10 +70,9 @@
 .post-img {
  width: 600px;
  height: 400px;
-}
-
-.post-img img {
- width: 100%;
- height: 100%;
- object-fit: cover;
+ img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
 }
