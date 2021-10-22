@@ -80,3 +80,7 @@ gem 'kaminari', '~> 1.2.1'
 gem 'jquery-rails'
 
 gem 'bootstrap', '~> 4.5'
+
+group :development, :test do
+  gem 'rspec-rails'
+end
