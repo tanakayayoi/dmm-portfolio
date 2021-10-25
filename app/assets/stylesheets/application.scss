@@ -54,6 +54,20 @@
  }
 }
 
+.media-body {
+ height: 300px;
+}
+
+.media-text {
+ width: 100%;
+ height: 100px;
+ display: -webkit-box;
+ -webkit-box-orient: vertical;
+ -webkit-line-clamp: 4;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+
 .log-in {
  background-color: #d3d3d3;
 }

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Postモデルのテスト', type: :model do
   let(:post) { FactoryBot.build(:post) }
+
   describe '新規投稿のテスト' do
     it "タイトルがない場合は投稿できないこと" do
       post.title = "タイトル"
@@ -10,7 +11,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
 
     it "本文が１文字以上２００文字以下でない場合は投稿できないこと" do
       post.body = "投稿の本文。"
-      expect(post).to be_valid
+      expect(post).to be_valid  # post.valid? が true になればパスする
     end
   end
 

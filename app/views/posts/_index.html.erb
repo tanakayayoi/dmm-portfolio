@@ -13,7 +13,7 @@
               <p><%= attachment_image_tag post.user, :profile_image, size: "50x50", fallback: "no_image.jpg", class: "mt-3 rounded-circle" %></p>
             <% end %>
           </div>
-          <div class="col-8">
+          <div class="col-8 mt-3">
             <p class="media-title">
               <strong><%= link_to post.title, post_path(post), class: "text-dark" %></strong>
             </p>
