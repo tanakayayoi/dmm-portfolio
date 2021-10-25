@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:user_id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    @posts = @user.posts.page(params[:page]).reverse_order
   end
 
   private

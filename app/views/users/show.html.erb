@@ -20,7 +20,7 @@
       <div class="profile-img my-2">
         <%= attachment_image_tag @user, :profile_image, size: "100x100", fallback: "no_image.jpg", class: "rounded-circle" %>
       </div>
-      <table class="table">
+      <table class="table profile-table">
         <tr>
           <th>ニックネーム</th>
           <td><%= @user.name %></td>
