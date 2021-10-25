@@ -29,6 +29,10 @@
           <th>自己紹介</th>
           <td><%= @user.introduction %></td>
         </tr>
+        <tr>
+          <th>いいねした投稿</th>
+          <td><%= link_to @user.favorites.count, user_favorites_path(@user), class: "text-dark" %></td>
+        </tr>
       </table>
     </div>
     <div class="col-9">

@@ -18,12 +18,19 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  # 退会処理（物理削除
+  # 退会処理（物理削除）
   def destroy
     @user = current_user
     @user.destroy
     flash[:notice] = 'ユーザーを削除しました。'
     redirect_to :root
+  end
+
+  # ユーザーがいいねした投稿一覧
+  def favorites
+    @user = User.find(params[:user_id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
   end
 
   private

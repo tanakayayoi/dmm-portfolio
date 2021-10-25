@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resource :favorites, only: %i[create destroy]
     resources :post_comments, only: %i[create edit update destroy]
   end
-  resources :users, only: %i[show edit update destroy]
+  resources :users, only: %i[show edit update destroy] do
+    get 'favorites' => 'users#favorites'
+  end
   get 'confirm' => 'users#confirm'
   resources :contacts, only: %i[new create]
   post 'confirm' => 'contacts#confirm'
