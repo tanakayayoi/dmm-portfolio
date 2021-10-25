@@ -4,9 +4,9 @@
       <br>
       <h3>新規投稿フォーム</h3>
       <% if @post.errors.any? %>
-        <%= @post.errors.count %>件のエラーが発生しました<br>
+        <%= @post.errors.count %>件のエラーが発生しました
         <% @post.errors.full_messages.each do |message| %>
-          <%= message %><br>
+          <li><%= message %></li>
         <% end %>
       <% end %>
 

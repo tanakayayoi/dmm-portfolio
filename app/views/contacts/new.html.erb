@@ -4,6 +4,12 @@
       <br>
       <h3>お問い合わせフォーム</h3>
       <p><small>*は必須項目です。</small></p>
+      <% if @contact.errors.any? %>
+        <%= @contact.errors.count %>件のエラーが発生しました
+        <% @contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      <% end %>
       <%= form_with model: @contact, url: confirm_path, local: true do |f| %>
         <div class="form-group">
           <%= f.label :name, '氏名*' %>
