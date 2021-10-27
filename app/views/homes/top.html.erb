@@ -16,7 +16,7 @@
 <div class="row">
   <div class="col-md-9">
     <h3 class="text-center mt-3">人気の投稿</h3>
-    <%= render 'posts/index', posts: @posts, post_tags: @post_tags %>
+    <%= render 'posts/index', posts: @posts.first(5), post_tags: @post_tags %>
     <p class="text-center"><strong>投稿一覧は<%= link_to 'こちら', posts_path %></strong></p>
   </div>
 
