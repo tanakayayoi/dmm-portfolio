@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'search' => 'searches#search'
   devise_for :users
   root to: 'homes#top'
-  resources :posts, except: [:index] do
+  resources :posts do
     resource :favorites, only: %i[create destroy]
     resources :post_comments, only: %i[create edit update destroy]
   end

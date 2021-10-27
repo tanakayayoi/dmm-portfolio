@@ -14,6 +14,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.page(params[:page]).reverse_order
+  end
+
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
