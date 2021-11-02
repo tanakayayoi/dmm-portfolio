@@ -24,6 +24,7 @@
       <% end %>
       <p>タイトル：<%= @post.title %></p>
       <p>本文：<%= @post.body %></p>
+      <p class="sentiment-score">本文の感情分析スコア[<%= @post.score %>]</p>
       <p>タグ：
         <% @post_tags.each do |tag| %>
           <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %> (<%= tag.posts.count %>)
