@@ -28,19 +28,17 @@
                 <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %> (<%= tag.posts.count %>)
               <% end %>
             </p>
-            <span><i class="fas fa-user"></i><%= link_to post.user.name, user_path(post.user), class: "text-dark" %> | </span>
-            <span><i class="far fa-comment"></i><%= link_to "#{post.post_comments.count} コメント", post_path(post), class: "text-dark" %></span>
-            <span>
-              <% if user_signed_in? %><!-- ユーザーがログインしている且つ自分の投稿じゃない時のみいいねボタンを表示 -->
-                <% if post.user == current_user %><!-- 自分の投稿にはいいね数のみ表示（いいねできない） -->
-                  <p class="fas fa-heart heart_red"><%= post.favorites.count %></p>
-                <% else %>
-                  <p class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></p>
-                <% end %>
-              <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
-                <p class="fas fa-heart heart_red"><%= post.favorites.count %></p>
+            <p>written by <i class="fas fa-user"></i><%= link_to post.user.name, user_path(post.user), class: "text-dark" %></p>
+            <span><i class="far fa-comment"></i><%= link_to "#{post.post_comments.count} コメント", post_path(post), class: "text-dark" %> | </span>
+            <% if user_signed_in? %><!-- ユーザーがログインしている且つ自分の投稿じゃない時のみいいねボタンを表示 -->
+              <% if post.user == current_user %><!-- 自分の投稿にはいいね数のみ表示（いいねできない） -->
+                <span class="fas fa-star star_yellow"><%= post.favorites.count %></span>
+              <% else %>
+                <span class="favorite-btn_<%= post.id %>"><%= render 'favorites/favorite-btn', post: post %></span>
               <% end %>
-            </span>
+            <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
+              <span class="fas fa-star star_yellow"><%= post.favorites.count %></span>
+            <% end %>
           </div>
         </div>
       </div>

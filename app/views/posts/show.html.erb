@@ -4,6 +4,11 @@
       <div class="post-img">
         <%= attachment_image_tag @post, :image, fallback: "no_image.jpg" %>
       </div>
+      <br>
+      <% if @post.user == current_user %>
+        <span><%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %></span>
+        <span><%= link_to "編集", edit_post_path(@post), class: "btn btn-info" %></span>
+      <% end %>
     </div>
     <div class="col-5">
       <p>
@@ -12,28 +17,25 @@
         <% end %>
         <%= link_to @post.user.name, user_path(@post.user), class: "text-dark" %>
       </p>
-      <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+      <span><%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>　</span>
       <% if user_signed_in? %><!-- ユーザーがログインしている且つ自分の投稿じゃない時のみいいねボタンを表示 -->
         <% if @post.user == current_user %><!-- 自分の投稿にはいいね数のみ表示（いいねできない） -->
-          <p class="fas fa-heart heart_red"><%= @post.favorites.count %></p>
+          <span class="fas fa-star star_yellow"><%= @post.favorites.count %></span>
         <% else %>
-          <p class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></p>
+          <span class="favorite-btn_<%= @post.id %>"><%= render 'favorites/favorite-btn', post: @post %></span>
         <% end %>
       <% else %><!-- ユーザーがログインしていない時はいいね数のみ表示 -->
-        <p class="fas fa-heart heart_red"><%= @post.favorites.count %></p>
+        <span class="fas fa-star star_yellow"><%= @post.favorites.count %></span>
       <% end %>
-      <p>タイトル：<%= @post.title %></p>
-      <p>本文：<%= @post.body %></p>
+      <p class="mt-3"><strong><%= @post.title %></strong></p>
+      <p><%= @post.body %></p>
       <p class="sentiment-score"><em>本文の感情分析スコア[<%= @post.score %>]</em></p>
-      <p>タグ：
+      <p>
         <% @post_tags.each do |tag| %>
           <%= link_to tag.tag_name, tag_posts_path(tag_id: tag.id) %> (<%= tag.posts.count %>)
         <% end %>
       </p>
-      <% if @post.user == current_user %>
-        <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-        <%= link_to "編集", edit_post_path(@post), class: "btn btn-info" %>
-      <% end %>
+
 
       <div class="post_comments my-3">
         <p id="comments-count">コメント件数：<%= @post.post_comments.count %></p>
