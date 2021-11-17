@@ -22,18 +22,18 @@ function initMap(){ //コールバック関数
 }
 
 function codeAddress(){ //コールバック関数
-  let inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
+  var inputAddress = document.getElementById('address').value; //'address'というidの値（value）を取得
 
   geocoder.geocode( { 'address': inputAddress}, function(results, status) { //ジオコードしたい住所を引数として渡す
     if (status == 'OK') {
-      let lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
-      let lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
-      let mark = {
+      var lat = results[0].geometry.location.lat(); //ジオコードした結果の緯度
+      var lng = results[0].geometry.location.lng(); //ジオコードした結果の経度
+      var mark = {
           lat: lat, //緯度
           lng: lng  //経度
       };
       map.setCenter(results[0].geometry.location); //最も近い、判読可能な住所を取得したい場所の緯度・経度
-      let marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
           map: map, //マーカーを落とすマップを指定
           position: results[0].geometry.location //マーカーを落とす位置を決める
       });
