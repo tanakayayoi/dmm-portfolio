@@ -1,5 +1,5 @@
-let map; //変数の定義
-let geocoder; //変数の定義
+var map; //変数の定義
+var geocoder; //変数の定義
 
 function initMap(){ //コールバック関数
   geocoder = new google.maps.Geocoder() //GoogleMapsAPIジオコーディングサービスにアクセス
@@ -40,7 +40,7 @@ function codeAddress(){ //コールバック関数
     } else {
       alert('該当する結果がありませんでした');
     }
-  });   
+  });
 }
 
 
