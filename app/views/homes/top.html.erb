@@ -1,3 +1,4 @@
+<%= include_gon %>
 <div class="row mb-5">
   <div class="main-visual">
     <div class="main-visual-content text-center">
@@ -32,6 +33,6 @@
 
 <% if user_signed_in? %>
   <div class="new-post-btn btn btn-info btn-lg">
-    <i class="fas fa-pen-nib"></i><%= link_to '新規投稿', new_post_path, class: "text-light" %>
+    <i class="fas fa-pen-nib"></i><%= link_to '新規投稿', new_post_path, class: "text-light", 'data-turbolinks': false %>
   </div>
 <% end %>

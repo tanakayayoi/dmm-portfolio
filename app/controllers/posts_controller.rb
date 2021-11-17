@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def new
     @post = Post.new
+    @post.build_spot
   end
 
   def create
@@ -21,6 +22,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @lat = @post.spot.latitude
+    @lng = @post.spot.longitude
+    gon.lat = @lat
+    gon.lng = @lng
     @post_comment = PostComment.new
     @post_tags = @post.tags
   end
@@ -53,6 +58,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :body, :tag)
+    params.require(:post).permit(:image, :title, :body, :tag, spot_attributes: [:address])
   end
 end

@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :favorited_users, through: :favorites, source: :user
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_one :spot, dependent: :destroy
+  accepts_nested_attributes_for :spot
 
   validates :title, presence: true
   validates :body, length: {in: 1..200}

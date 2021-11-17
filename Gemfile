@@ -84,3 +84,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 4.5'
 
 gem 'geocoder'
+
+gem 'gmaps4rails'
+
+gem 'gon'

@@ -16,8 +16,17 @@
           <br>例：羽田空港 グルメ お土産
         </p>
         <%= f.text_field :tag_name %><br><br>
+        <div class="spot">
+          <%= f.fields_for :spot do |s| %>
+            <h5>スポット</h5>
+            <%= s.text_field :address, placeholder: "場所の名称や住所を入力", id: "address", class: "spot_text" %>
+          <input onclick="codeAddress()" type="button" value="検索する"></input>
+          <div class="map" id="map" style="height: 320px; width: 400px;"></div>
+          <% end %>
+        </div><br>
         <%= f.submit '変更内容を保存', class: "btn btn-info mb-3" %>
       <% end %>
     </div>
   </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
