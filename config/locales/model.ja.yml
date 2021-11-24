@@ -1,0 +1,60 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      contact: お問い合わせ
+      favorite: お気に入り
+      post_comment: コメント
+      spot: スポット
+      tag: タグ
+      tag_map: タグマップ
+    attributes:
+      user:
+        id: ID
+        email: メールアドレス
+        encrypted_password: パスワード
+        name: ニックネーム
+        profile_image_id: プロフィール画像ID
+        introduction: 自己紹介
+      post:
+        id: ID
+        user_id: ユーザーID
+        image_id: 投稿画像ID
+        tag: タグ
+        title: タイトル
+        body: 本文
+        score: 感情分析スコア
+      contact:
+        id: ID
+        name: 氏名
+        email: メールアドレス
+        phone: 電話番号
+        subject: 件名
+        message: メッセージ
+      favorite:
+        id: ID
+        post_id: 投稿ID
+        user_id: ユーザーID
+      post_comment:
+        id: ID
+        post_id: 投稿ID
+        user_id: ユーザーID
+        comment: コメント
+      spot:
+        id: ID
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+        post_id: 投稿ID
+      tag_map:
+        id: ID
+        post_id: 投稿ID
+        tag_id: タグID
+      tag:
+       id: ID
+       tag_name: タグ名
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時
+    

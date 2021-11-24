@@ -88,3 +88,5 @@ gem 'geocoder'
 gem 'gmaps4rails'
 
 gem 'gon'
+
+gem 'rails-i18n', '~> 5.1'
