@@ -8,12 +8,17 @@ Rails.application.routes.draw do
   end
   resources :users, only: %i[show edit update destroy] do
     get 'favorites' => 'users#favorites'
+    collection do
+      get 'confirm' => 'users#confirm'
+    end
   end
-  get 'confirm' => 'users#confirm'
-  resources :contacts, only: %i[new create]
-  post 'confirm' => 'contacts#confirm'
-  post 'back' => 'contacts#back'
-  get 'done' => 'contacts#done'
+  resources :contacts, only: %i[new create] do
+    collection do
+      post 'confirm' => 'contacts#confirm'
+      post 'back' => 'contacts#back'
+      get 'done' => 'contacts#done'
+    end
+  end
   resources :tags do
     get 'posts' => 'posts#search'
   end
